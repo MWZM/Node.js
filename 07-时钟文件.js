@@ -1,6 +1,5 @@
 const path = require('path')
 const fs = require('fs')
-const { Script } = require('vm')
 const regstyle = /<style>[\s\S]*<\/style>/
 const regscript = /<script>[\s\S]*<\/script>/
     // 读取index.html

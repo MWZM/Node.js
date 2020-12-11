@@ -13,9 +13,11 @@ fs.readFile(path.join(__dirname, './files/index.html'), 'utf8', function(erro, s
     })
     // 获取style文件
 function Css(htmlStr) {
+    //利用正则先进行抽取
     const styles = regstyle.exec(htmlStr)
     console.log(styles);
-    const newcss = styles[0].replace('<s>', '').replace('</s>', '')
+    //利用字符串的替换 去掉style起始标签
+    const newcss = styles[0].replace('<style>', '').replace('</style>', '')
     fs.writeFile(path.join(__dirname, './clock/index.css'), newcss, function(erro, success) {
         if (erro) {
             return console.log('获取失败' + erro.message);

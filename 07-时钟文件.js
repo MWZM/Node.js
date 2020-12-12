@@ -10,6 +10,7 @@ fs.readFile(path.join(__dirname, './files/index.html'), 'utf8', function(erro, s
         // console.log('获取成功' + success);
         Css(success)
         Scripts(success)
+        HTMLS(htmlStr)
     })
     // 获取style文件
 function Css(htmlStr) {
@@ -37,5 +38,15 @@ function Scripts(htmlStr) {
         }
         // console.log('获取成功' + success);
         console.log('存入成功', success);
+    })
+}
+// 定义处理 HTML 结构的方法
+function HTMLS(htmlStr) {
+    // 5.2 将字符串调用 replace 方法，把内嵌的 style 和 script 标签，替换为外联的 link 和 script 标签
+    const newHTML = htmlStr.replace(regStyle, '<link rel="stylesheet" href="./index.css" />').replace(regScript, '<script src="./index.js"></script>')
+        // 5.3 写入 index.html 这个文件
+    fs.writeFile(path.join(__dirname, './clock/index.html'), newHTML, function(err) {
+        if (err) return console.log('写入 HTML 文件失败！' + err.message)
+        console.log('写入 HTML 页面成功！')
     })
 }

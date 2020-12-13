@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 
 // 创建服务器
-server = http.createServer()
+const server = http.createServer()
 
 // 监听服务器
 server.on('request', (req, res) => {
